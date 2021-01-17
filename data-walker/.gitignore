@@ -1,0 +1,10 @@
+*/data/input/*
+*/data/output/*
+
+bin
+obj
+
+.DS_Store
+.vscode
+.vs
+.idea
