@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.IO;
 using iText.Kernel.Geom;
@@ -18,10 +18,10 @@ namespace PdfWalker
             var workingDir = Directory.GetCurrentDirectory();
             var inputDir = Path.Combine(workingDir, "data", "input");
             var filePaths = Directory.EnumerateFiles(inputDir, "*.pdf");
-            var left = 19;
-            var top = 38;
-            var width = 200;
-            var height = 30;
+            var left = 310;
+            var top = 841.9-667.3;
+            var width = 504.6-310;
+            var height = 667.3-652.3;
             var resultTable = new DataTable();
             var column_file_name = "file_name";
             var column_content_title = "content_title";
@@ -31,7 +31,7 @@ namespace PdfWalker
             {
                 using (var pdfDoc = new PdfDocument(new PdfReader(file)))
                 {
-                    var page = pdfDoc.GetPage(1);
+                    var page = pdfDoc.GetPage(3);
                     var pageSize = page.GetPageSize();
                     Console.WriteLine($"pageSize: {pageSize}");
                     var filterRect = new Rectangle(left, pageSize.GetTop() - top - height, width, height);
