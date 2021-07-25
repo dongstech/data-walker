@@ -1,0 +1,2 @@
+tesserocr~=2.5.2
+pdf2image~=1.16.0

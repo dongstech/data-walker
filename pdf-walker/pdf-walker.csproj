@@ -14,7 +14,22 @@
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="5.5.1" />
     <PackageReference Include="itext7" Version="7.1.14" />
+    <PackageReference Include="itext7.pdfocr.api" Version="1.0.2" />
+    <PackageReference Include="itext7.pdfocr.tesseract4" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0-preview.4.21253.7" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="appsettings.Production.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
