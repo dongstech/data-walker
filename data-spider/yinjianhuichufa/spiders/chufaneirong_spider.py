@@ -39,11 +39,10 @@ class ChufaneirongSpider(scrapy.Spider):
             totalDocs = respObj['data']['total']
             totalPages = math.ceil(totalDocs/pageSize)
             for pageIndex in range(totalPages):
-            # for pageIndex in range(3):
                 pageIndex += 1
                 pageUri = f'https://www.cbirc.gov.cn/cbircweb/DocInfo/SelectDocByItemIdAndChild?itemId={data_item_id}&pageIndex={pageIndex}&pageSize={pageSize}'
                 yield scrapy.Request(url=pageUri, callback=self.parse_doc_list)
-                break
+                # break
 
     def parse_doc_list(self, response):
         respObj = json.loads(response.text)
@@ -53,7 +52,7 @@ class ChufaneirongSpider(scrapy.Spider):
                 docId = doc['docId']
                 docUri = f'https://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectByDocId/data_docId={docId}.json'
                 yield scrapy.Request(url=docUri, callback=self.parse_doc)
-                break
+                # break
 
     def parse_doc(self, response):
         respObj = json.loads(response.body)
@@ -63,32 +62,38 @@ class ChufaneirongSpider(scrapy.Spider):
             result = {}
             doc_id = respObj['data']['docId']
             result['link'] = f'https://www.cbirc.gov.cn/cn/view/pages/ItemDetail.html?docId={doc_id}&itemId=4113&generaltype=9'
+            yield result
 
-            table = selector.xpath('//div[@class="Section0"]//table')
-            # if table is None:
+            # table = selector.xpath('//div[@class="Section0"]//table')
 
-            if len(table) > 0:
-                row_number = len(table.xpath('./tr'))
-                if row_number == 7:
-                    for i in range(row_number):
-                        rowIdx = i+1
-                        value = table.xpath(
-                            f'./tr[{rowIdx}]/td[2]/p//text()').getall()
-                        value = ''.join(value)
-                        result[self.fields[f'field{rowIdx}']] = value
-                    result[self.fields['field8']] = ''
-                    yield result
-                elif row_number == 8:
-                    for i in range(row_number):
-                        row_idx = i + 1
-                elif row_number == 9:
-                    for i in range(row_number):
-                        row_idx = i + 1
-            else:
-                for i in range(len(self.fields)):
-                    row_idx = i+1
-                    result[f'field{row_idx}'] = ''
-                origin_content = selector.xpath('//p//text()').getall()
-                origin_content = ''.join(origin_content)
-                result['origin_content'] = origin_content
-                yield result
+            # if len(table) > 0:
+            #     row_number = len(table.xpath('./tr'))
+            #     if row_number == 7:
+            #         for i in range(row_number):
+            #             rowIdx = i+1
+            #             value = table.xpath(
+            #                 f'./tr[{rowIdx}]/td[2]/p//text()').getall()
+            #             value = ''.join(value)
+            #             result[self.fields[f'field{rowIdx}']] = value
+            #         result[self.fields['field8']] = ''
+            #         yield result
+            #     elif row_number == 8:
+            #         for i in range(row_number):
+            #             row_idx = i + 1
+            #         result[self.fields['field8']] = '8'
+            #     elif row_number == 9:
+            #         for i in range(row_number):
+            #             row_idx = i + 1
+            #         result[self.fields['field8']] = '9'
+            #     else:
+            #         for i in range(row_number):
+            #             row_idx = i + 1
+            #         result[self.fields['field8']] = row_number
+            # else:
+            #     for i in range(len(self.fields)):
+            #         row_idx = i+1
+            #         result[f'field{row_idx}'] = ''
+            #     # origin_content = selector.xpath('//p//text()').getall()
+            #     # origin_content = ''.join(origin_content)
+            #     # result['origin_content'] = origin_content
+            #     yield result
