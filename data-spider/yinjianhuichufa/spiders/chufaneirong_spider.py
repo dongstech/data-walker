@@ -81,17 +81,17 @@ class ChufaneirongSpider(scrapy.Spider):
                     result[self.fields['field8']] = ''
                     yield result
                 elif row_number == 8:
-                    for i in range(row_number):
+                    for i in range(len(self.fields)):
                         row_idx = i + 1
                         result[self.fields[f'field{row_idx}']] = ''
                     result[self.fields['field8']] = '8'
                 elif row_number == 9:
-                    for i in range(row_number):
+                    for i in range(len(self.fields)):
                         row_idx = i + 1
                         result[self.fields[f'field{row_idx}']] = ''
                     result[self.fields['field8']] = '9'
                 else:
-                    for i in range(row_number):
+                    for i in range(len(self.fields)):
                         row_idx = i + 1
                         result[self.fields[f'field{row_idx}']] = ''
                     result[self.fields['field8']] = row_number
