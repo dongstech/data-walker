@@ -29,4 +29,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           cd data-spider
+          pip install -r requirements.txt
           ./run.sh
