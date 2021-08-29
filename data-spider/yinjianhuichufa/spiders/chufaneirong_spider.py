@@ -44,7 +44,7 @@ class ChufaneirongSpider(scrapy.Spider):
                 pageIndex += 1
                 pageUri = f'https://www.cbirc.gov.cn/cbircweb/DocInfo/SelectDocByItemIdAndChild?itemId={data_item_id}&pageIndex={pageIndex}&pageSize={pageSize}'
                 yield scrapy.Request(url=pageUri, callback=self.parse_doc_list)
-                # break
+                break
 
     def parse_doc_list(self, response):
         respObj = json.loads(response.text)
@@ -58,7 +58,7 @@ class ChufaneirongSpider(scrapy.Spider):
                 docUri = f'https://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectByDocId/data_docId={docId}.json'
                 if datetime.today().year - publishDate.year < yearWindow :
                     yield scrapy.Request(url=docUri, callback=self.parse_doc)
-                # break
+                break
 
     def parse_doc(self, response):
         respObj = json.loads(response.body)
