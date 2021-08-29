@@ -44,7 +44,6 @@ class ChufaneirongSpider(scrapy.Spider):
                 pageIndex += 1
                 pageUri = f'https://www.cbirc.gov.cn/cbircweb/DocInfo/SelectDocByItemIdAndChild?itemId={data_item_id}&pageIndex={pageIndex}&pageSize={pageSize}'
                 yield scrapy.Request(url=pageUri, callback=self.parse_doc_list)
-                break
 
     def parse_doc_list(self, response):
         respObj = json.loads(response.text)
@@ -58,7 +57,6 @@ class ChufaneirongSpider(scrapy.Spider):
                 docUri = f'https://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectByDocId/data_docId={docId}.json'
                 if datetime.today().year - publishDate.year < yearWindow :
                     yield scrapy.Request(url=docUri, callback=self.parse_doc)
-                break
 
     def parse_doc(self, response):
         respObj = json.loads(response.body)
@@ -85,21 +83,24 @@ class ChufaneirongSpider(scrapy.Spider):
                 elif row_number == 8:
                     for i in range(row_number):
                         row_idx = i + 1
+                        result[self.fields[f'field{row_idx}']] = ''
                     result[self.fields['field8']] = '8'
                 elif row_number == 9:
                     for i in range(row_number):
                         row_idx = i + 1
+                        result[self.fields[f'field{row_idx}']] = ''
                     result[self.fields['field8']] = '9'
                 else:
                     for i in range(row_number):
                         row_idx = i + 1
+                        result[self.fields[f'field{row_idx}']] = ''
                     result[self.fields['field8']] = row_number
                 yield result
             else:
                 for i in range(len(self.fields)):
                     row_idx = i+1
-                    result[f'field{row_idx}'] = ''
-                # origin_content = selector.xpath('//p//text()').getall()
-                # origin_content = ''.join(origin_content)
-                # result['origin_content'] = origin_content
+                    result[self.fields[f'field{row_idx}']] = ''
+                origin_content = selector.xpath('//p//text()').getall()
+                origin_content = ''.join(origin_content)
+                result[self.fields['field8']] = origin_content
                 yield result
