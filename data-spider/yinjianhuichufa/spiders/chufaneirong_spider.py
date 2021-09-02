@@ -110,7 +110,7 @@ class ChufaneirongSpider(scrapy.Spider):
         self.log('parse_table_8_rows...')
         result = {}
         table = selector.xpath(
-            '//div[@class="Section0"]//table | //div[@class="Section1"]//table')
+            '//div[@class="Section0"]//table | //div[@class="Section1"]//table | //div[@class="WordSection1"]//table')
         result[self.fields['field1']] = "".join(table.xpath(
             './tr[1]/td[2]//text()').getall())
 
