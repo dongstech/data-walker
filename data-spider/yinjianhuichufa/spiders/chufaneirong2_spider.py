@@ -7,7 +7,7 @@ from scrapy import Selector
 
 
 class ChufaneirongSpider(scrapy.Spider):
-    name = "chufaneirong"
+    name = "chufaneirong2"
     pageSize = 18
     fields = {
         'field1': '行政处罚决定书文号',
@@ -57,7 +57,7 @@ class ChufaneirongSpider(scrapy.Spider):
                 publishDate = datetime.strptime(
                     doc['publishDate'], '%Y-%m-%d %H:%M:%S')  # 2005-07-09 10:08:00
                 docUri = f'https://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectByDocId/data_docId={docId}.json'
-                if publishDate.year == 2018:
+                if publishDate.year == 2020:
                     yield scrapy.Request(url=docUri, callback=self.parse_doc)
 
     def parse_doc(self, response):
