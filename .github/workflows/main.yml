@@ -34,7 +34,7 @@ jobs:
       - name: Archive the result
         uses: actions/upload-artifact@v2
         with:
-          name: result.csv
+          name: result_2018.csv
           path: |
             ./data-spider/result.csv
   # This workflow contains a single job called "build"
@@ -62,7 +62,7 @@ jobs:
       - name: Archive the result
         uses: actions/upload-artifact@v2
         with:
-          name: result1.csv
+          name: result_2019.csv
           path: |
             ./data-spider/result1.csv
   # This workflow contains a single job called "build"
@@ -90,7 +90,7 @@ jobs:
       - name: Archive the result
         uses: actions/upload-artifact@v2
         with:
-          name: result2.csv
+          name: result_2020.csv
           path: |
             ./data-spider/result2.csv
               # This workflow contains a single job called "build"
@@ -118,6 +118,6 @@ jobs:
       - name: Archive the result
         uses: actions/upload-artifact@v2
         with:
-          name: result3.csv
+          name: result_2021.csv
           path: |
             ./data-spider/result3.csv
