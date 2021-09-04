@@ -12,8 +12,8 @@ class ChufaneirongSpider(scrapy.Spider):
     def start_requests(self):
         urls = [
             'https://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectDocByItemIdAndChild/data_itemId=4113,pageIndex=1,pageSize=18.json',
-            # 'https://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectDocByItemIdAndChild/data_itemId=4114,pageIndex=1,pageSize=18.json',
-            # 'https://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectDocByItemIdAndChild/data_itemId=4115,pageIndex=1,pageSize=18.json'
+            'https://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectDocByItemIdAndChild/data_itemId=4114,pageIndex=1,pageSize=18.json',
+            'https://www.cbirc.gov.cn/cn/static/data/DocInfo/SelectDocByItemIdAndChild/data_itemId=4115,pageIndex=1,pageSize=18.json'
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
