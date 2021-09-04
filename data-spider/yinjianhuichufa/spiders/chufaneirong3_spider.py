@@ -168,15 +168,15 @@ class ChufaneirongSpider(scrapy.Spider):
             './tr[3]/td[2]//text()').getall() + table.xpath('./tr[4]/td[3]//text()').getall() + table.xpath('./tr[5]/td[2]//text()').getall()).strip()
 
         result[self.fields['field3']] = "".join(table.xpath(
-            './tr[5]/td[2]//text()').getall())
-        result[self.fields['field4']] = "".join(table.xpath(
             './tr[6]/td[2]//text()').getall())
-        result[self.fields['field5']] = "".join(table.xpath(
+        result[self.fields['field4']] = "".join(table.xpath(
             './tr[7]/td[2]//text()').getall())
-        result[self.fields['field6']] = "".join(table.xpath(
+        result[self.fields['field5']] = "".join(table.xpath(
             './tr[8]/td[2]//text()').getall())
-        result[self.fields['field7']] = "".join(table.xpath(
+        result[self.fields['field6']] = "".join(table.xpath(
             './tr[9]/td[2]//text()').getall())
+        result[self.fields['field7']] = "".join(table.xpath(
+            './tr[10]/td[2]//text()').getall())
         result[self.fields['field8']] = "".join(table.xpath(
             './/text()').getall())
         return result
