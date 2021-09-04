@@ -36,7 +36,7 @@ jobs:
         with:
           name: result_2018.csv
           path: |
-            ./data-spider/result.csv
+            ./data-spider/result_2018.csv
   # This workflow contains a single job called "build"
   grab_2019:
     # The type of runner that the job will run on
