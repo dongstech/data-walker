@@ -34,7 +34,8 @@ class DocParser:
                 9:self.parse_table_9_rows,
                 10:self.parse_table_10_rows,
                 11:self.parse_table_11_rows,
-                12:self.parse_table_12_rows
+                12:self.parse_table_12_rows,
+                13:self.parse_table_13_rows,
             }
 
             if len(table) > 0:
@@ -176,6 +177,35 @@ class DocParser:
             './tr[11]/td[2]//text()').getall())
         result[self.fields['field7']] = "".join(table.xpath(
             './tr[12]/td[2]//text()').getall())
+        result[self.fields['field8']] = "".join(table.xpath(
+            './/text()').getall())
+        return result
+
+    def parse_table_13_rows(self, table):
+        result = {}
+        
+        result[self.fields['field1']] = "".join(table.xpath(
+            './tr[4]/td[2]//text()').getall()).strip()
+
+        result[self.fields['field2']] = " ".join(
+            table.xpath('./tr[2]/td[3]//text()').getall()
+            + table.xpath('./tr[3]/td[3]//text()').getall()
+            + table.xpath('./tr[4]/td[2]//text()').getall()
+            + table.xpath('./tr[5]/td[3]//text()').getall()
+            + table.xpath('./tr[6]/td[2]//text()').getall()
+            + table.xpath('./tr[7]/td[3]//text()').getall()
+            + table.xpath('./tr[8]/td[2]//text()').getall())
+
+        result[self.fields['field3']] = "".join(table.xpath(
+            './tr[9]/td[2]//text()').getall())
+        result[self.fields['field4']] = "".join(table.xpath(
+            './tr[10]/td[2]//text()').getall())
+        result[self.fields['field5']] = "".join(table.xpath(
+            './tr[11]/td[2]//text()').getall())
+        result[self.fields['field6']] = "".join(table.xpath(
+            './tr[12]/td[2]//text()').getall())
+        result[self.fields['field7']] = "".join(table.xpath(
+            './tr[13]/td[2]//text()').getall())
         result[self.fields['field8']] = "".join(table.xpath(
             './/text()').getall())
         return result
