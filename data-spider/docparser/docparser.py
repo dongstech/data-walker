@@ -27,19 +27,21 @@ class DocParser:
 
             table = selector.xpath(
                 '//div[@class="Section0"]//table | //div[@class="Section1"]//table | //div[@class="WordSection1"]//table')
+            
+            tableParser = {
+                7:self.parse_table_7_rows,
+                8:self.parse_table_8_rows,
+                9:self.parse_table_9_rows,
+                10:self.parse_table_10_rows,
+                11:self.parse_table_11_rows,
+                12:self.parse_table_12_rows
+            }
 
             if len(table) > 0:
                 row_number = len(table.xpath('./tr'))
-                if row_number == 7:
-                    result = result | self.parse_table_7_rows(table)
-                elif row_number == 8:
-                    result = result | self.parse_table_8_rows(table)
-                elif row_number == 9:
-                    result = result | self.parse_table_9_rows(table)
-                elif row_number == 10:
-                    result = result | self.parse_table_10_rows(table)
-                elif row_number == 12:
-                    result = result | self.parse_table_12_rows(table)
+                if row_number in tableParser:
+                    parser = tableParser[row_number]
+                    result = result | parser(table)
                 else:
                     for i in range(len(self.fields)):
                         row_idx = i + 1
@@ -132,6 +134,29 @@ class DocParser:
             './/text()').getall())
         return result
 
+    def parse_table_11_rows(self, table):
+        result = {}
+        
+        result[self.fields['field1']] = "".join(table.xpath(
+            './tr[3]/td[2]//text()').getall()).strip()
+
+        result[self.fields['field2']] = "".join(table.xpath('./tr[4]/td[3]//text()').getall() + table.xpath(
+            './tr[5]/td[3]//text()').getall() + table.xpath('./tr[6]/td[2]//text()').getall())
+
+        result[self.fields['field3']] = "".join(table.xpath(
+            './tr[7]/td[2]//text()').getall())
+        result[self.fields['field4']] = "".join(table.xpath(
+            './tr[8]/td[2]//text()').getall())
+        result[self.fields['field5']] = "".join(table.xpath(
+            './tr[9]/td[2]//text()').getall())
+        result[self.fields['field6']] = "".join(table.xpath(
+            './tr[10]/td[2]//text()').getall())
+        result[self.fields['field7']] = "".join(table.xpath(
+            './tr[11]/td[2]//text()').getall())
+        result[self.fields['field8']] = "".join(table.xpath(
+            './/text()').getall())
+        return result
+
     def parse_table_12_rows(self, table):
         result = {}
         
@@ -139,7 +164,7 @@ class DocParser:
             './tr[4]/td[2]//text()').getall()).strip()
 
         result[self.fields['field2']] = "".join(table.xpath('./tr[5]/td[3]//text()').getall() + table.xpath(
-            './tr[3]/td[3]//text()').getall() + table.xpath('./tr[7]/td[2]//text()').getall())
+            './tr[6]/td[3]//text()').getall() + table.xpath('./tr[7]/td[2]//text()').getall())
 
         result[self.fields['field3']] = "".join(table.xpath(
             './tr[8]/td[2]//text()').getall())
