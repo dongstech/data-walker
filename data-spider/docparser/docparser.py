@@ -75,19 +75,19 @@ class DocParser:
         result[self.fields['field1']] = "".join(table.xpath(
             './tr[1]/td[2]//text()').getall())
 
-        result[self.fields['field2']] = " ".join(table.xpath('./tr[2]/td[3]//text()').getall() + table.xpath(
+        result[self.fields['field2']] = " ".join(table.xpath('./tr[2]/td[4]//text()').getall() + table.xpath(
             './tr[3]/td[2]//text()').getall())
 
         result[self.fields['field3']] = "".join(table.xpath(
-            './tr[5]/td[2]//text()').getall())
+            './tr[4]/td[2]//text()').getall())
         result[self.fields['field4']] = "".join(table.xpath(
-            './tr[6]/td[2]//text()').getall())
+            './tr[5]/td[2]//text()').getall())
         result[self.fields['field5']] = "".join(table.xpath(
-            './tr[7]/td[2]//text()').getall())
+            './tr[6]/td[2]//text()').getall())
         result[self.fields['field6']] = "".join(table.xpath(
-            './tr[8]/td[2]//text()').getall())
+            './tr[7]/td[2]//text()').getall())
         result[self.fields['field7']] = "".join(table.xpath(
-            './tr[9]/td[2]//text()').getall())
+            './tr[8]/td[2]//text()').getall())
         result[self.fields['field8']] = "".join(table.xpath(
             './/text()').getall())
         return result
