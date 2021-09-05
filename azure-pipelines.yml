@@ -14,7 +14,7 @@ trigger: none
 pool:
   name: Azure Pipelines
 variables:
-  python.version: '3.9'
+  python-version: '3.9'
 
 stages:
   - stage: grab
@@ -26,9 +26,9 @@ stages:
         - checkout: self
         - download: none
         - task: UsePythonVersion@0
-          displayName: 'Use Python $(python.version)'
+          displayName: 'Use Python $(python-version)'
           inputs:
-            versionSpec: '$(python.version)'
+            versionSpec: '$(python-version)'
 
         - script: 'pip install -r requirements.txt'
           workingDirectory: 'data-spider'
@@ -50,9 +50,9 @@ stages:
         - checkout: self
         - download: none
         - task: UsePythonVersion@0
-          displayName: 'Use Python $(python.version)'
+          displayName: 'Use Python $(python-version)'
           inputs:
-            versionSpec: '$(python.version)'
+            versionSpec: '$(python-version)'
 
         - script: 'pip install -r requirements.txt'
           workingDirectory: 'data-spider'
@@ -74,9 +74,9 @@ stages:
         - checkout: self
         - download: none
         - task: UsePythonVersion@0
-          displayName: 'Use Python $(python.version)'
+          displayName: 'Use Python $(python-version)'
           inputs:
-            versionSpec: '$(python.version)'
+            versionSpec: '$(python-version)'
 
         - script: 'pip install -r requirements.txt'
           workingDirectory: 'data-spider'
@@ -98,9 +98,9 @@ stages:
         - checkout: self
         - download: none
         - task: UsePythonVersion@0
-          displayName: 'Use Python $(python.version)'
+          displayName: 'Use Python $(python-version)'
           inputs:
-            versionSpec: '$(python.version)'
+            versionSpec: '$(python-version)'
 
         - script: 'pip install -r requirements.txt'
           workingDirectory: 'data-spider'
