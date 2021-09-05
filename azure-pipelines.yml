@@ -12,7 +12,7 @@ trigger: none
 #       - '2021'
 
 pool:
-  name: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 variables:
   python-version: '3.9'
 
