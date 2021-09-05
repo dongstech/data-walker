@@ -53,7 +53,7 @@ class DocParser:
                 for i in range(len(self.fields)):
                     row_idx = i+1
                     result[self.fields[f'field{row_idx}']] = ''
-                origin_content = selector.xpath('///text()').getall()
+                origin_content = selector.xpath('//div[@class="Section0"] | //div[@class="Section1"] | //div[@class="WordSection1"]').xpath('.//text()').getall()
                 origin_content = ''.join(origin_content)
                 result[self.fields['field8']] = origin_content
             yield result
