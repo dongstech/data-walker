@@ -1,0 +1,118 @@
+name: $(SourceBranchName).$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+
+# parameters:
+#   - name: "years"
+#     type: object
+#     default:
+#       - '2018'
+#       - '2019'
+#       - '2020'
+#       - '2021'
+
+pool:
+  name: Azure Pipelines
+variables:
+  python.version: '3.9'
+
+stages:
+  - stage: grab
+    jobs:
+      - job: grab_2018
+        variables:
+          year: 2018
+        steps:
+        - checkout: self
+        - download: none
+        - task: UsePythonVersion@0
+          displayName: 'Use Python $(python.version)'
+          inputs:
+            versionSpec: '$(python.version)'
+
+        - script: 'pip install -r requirements.txt'
+          workingDirectory: 'data-spider'
+          displayName: 'Install dependencies'
+
+        - script: './run.sh $(year)'
+          workingDirectory: 'data-spider'
+          displayName: 'grab $(year)'
+
+        - task: PublishPipelineArtifact@1
+          displayName: 'Publish Pipeline Artifact'
+          inputs:
+            targetPath: 'data-spider/result_$(year).csv'
+            artifact: 'result_$(year).csv'
+      - job: grab_2019
+        variables:
+          year: 2019
+        steps:
+        - checkout: self
+        - download: none
+        - task: UsePythonVersion@0
+          displayName: 'Use Python $(python.version)'
+          inputs:
+            versionSpec: '$(python.version)'
+
+        - script: 'pip install -r requirements.txt'
+          workingDirectory: 'data-spider'
+          displayName: 'Install dependencies'
+
+        - script: './run.sh $(year)'
+          workingDirectory: 'data-spider'
+          displayName: 'grab $(year)'
+
+        - task: PublishPipelineArtifact@1
+          displayName: 'Publish Pipeline Artifact'
+          inputs:
+            targetPath: 'data-spider/result_$(year).csv'
+            artifact: 'result_$(year).csv'
+      - job: grab_2020
+        variables:
+          year: 2020
+        steps:
+        - checkout: self
+        - download: none
+        - task: UsePythonVersion@0
+          displayName: 'Use Python $(python.version)'
+          inputs:
+            versionSpec: '$(python.version)'
+
+        - script: 'pip install -r requirements.txt'
+          workingDirectory: 'data-spider'
+          displayName: 'Install dependencies'
+
+        - script: './run.sh $(year)'
+          workingDirectory: 'data-spider'
+          displayName: 'grab $(year)'
+
+        - task: PublishPipelineArtifact@1
+          displayName: 'Publish Pipeline Artifact'
+          inputs:
+            targetPath: 'data-spider/result_$(year).csv'
+            artifact: 'result_$(year).csv'
+      - job: grab_2021
+        variables:
+          year: 2021
+        steps:
+        - checkout: self
+        - download: none
+        - task: UsePythonVersion@0
+          displayName: 'Use Python $(python.version)'
+          inputs:
+            versionSpec: '$(python.version)'
+
+        - script: 'pip install -r requirements.txt'
+          workingDirectory: 'data-spider'
+          displayName: 'Install dependencies'
+
+        - script: './run.sh $(year)'
+          workingDirectory: 'data-spider'
+          displayName: 'grab $(year)'
+
+        - task: PublishPipelineArtifact@1
+          displayName: 'Publish Pipeline Artifact'
+          inputs:
+            targetPath: 'data-spider/result_$(year).csv'
+            artifact: 'result_$(year).csv'
+
