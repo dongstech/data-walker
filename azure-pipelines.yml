@@ -12,7 +12,7 @@ trigger: none
 #       - '2021'
 
 pool:
-  name: Azure Pipelines
+  name: ubuntu-latest
 variables:
   python-version: '3.9'
 
